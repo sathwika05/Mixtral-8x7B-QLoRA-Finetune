@@ -48,7 +48,8 @@ services:
         value: "false"
 
       # Absolute origin for Open Graph and canonical URLs, e.g.
-      # https://<service>.onrender.com — read at build time, so changing it
-      # needs a redeploy rather than a restart.
+      # https://<service>.onrender.com. Optional here: the app falls back to
+      # Render's own RENDER_EXTERNAL_URL. Set it only to override, and note it
+      # is read at build time, so a change needs a redeploy, not a restart.
       - key: NEXT_PUBLIC_SITE_URL
         sync: false

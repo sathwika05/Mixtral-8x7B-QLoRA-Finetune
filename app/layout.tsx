@@ -8,10 +8,17 @@ const OG_IMAGE = "/mixtral-qlora-fine-tuning.png";
 
 /**
  * Absolute URLs are required for Open Graph. `metadataBase` supplies the
- * prefix so every field below stays a relative path; set NEXT_PUBLIC_SITE_URL
- * at deploy time or previews will point at localhost.
+ * prefix so every field below stays a relative path.
+ *
+ * A localhost prefix is not merely cosmetic: a crawler that cannot fetch the
+ * image silently falls back to scraping whatever picture it finds on the page.
+ * RENDER_EXTERNAL_URL is injected by Render and already carries the scheme, so
+ * a deploy there is correct even when NEXT_PUBLIC_SITE_URL was never set.
  */
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  process.env.RENDER_EXTERNAL_URL ??
+  "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
