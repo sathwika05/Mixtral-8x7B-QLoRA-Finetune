@@ -1,0 +1,110 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Signal colors. Used ONLY for state, never as decoration or fill. */
+  --color-signal-ok: var(--signal-ok);
+  --color-signal-active: var(--signal-active);
+  --color-signal-error: var(--signal-error);
+  --color-signal-idle: var(--signal-idle);
+
+  /* Radius is capped: nothing in this interface is softer than 4px. */
+  --radius-sm: 0.125rem;
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius);
+  --radius-4xl: var(--radius);
+}
+
+/* Light only. The palette is drawn from the project's own render: cool white
+   glass with green signal traces, so the interface and its hero image agree. */
+:root {
+  color-scheme: light;
+  --radius: 0.25rem;
+
+  --background: #f6f8f7;
+  --foreground: #14201b;
+  --card: #ffffff;
+  --card-foreground: #14201b;
+  --popover: #ffffff;
+  --popover-foreground: #14201b;
+  --primary: #15413a;
+  --primary-foreground: #f6f8f7;
+  --secondary: #ecefed;
+  --secondary-foreground: #14201b;
+  --muted: #ecefed;
+  --muted-foreground: #4a564f;
+  --accent: #e4eae6;
+  --accent-foreground: #14201b;
+  --destructive: #a8322b;
+  --border: #dde3df;
+  --border-strong: #c3ccc7;
+  --input: #dde3df;
+  --ring: #15413a;
+
+  --signal-ok: #1b7a4b;
+  --signal-active: #9a5b00;
+  --signal-error: #a8322b;
+  --signal-idle: #8c968f;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/*
+ * Every number, identifier, status, and parameter in this interface renders
+ * through .num: monospace with tabular figures, so values do not shift width
+ * as they update.
+ */
+.num {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

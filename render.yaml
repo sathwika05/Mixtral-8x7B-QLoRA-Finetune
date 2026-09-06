@@ -1,0 +1,54 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# To deploy: Render dashboard → New → Blueprint → point it at this repo.
+#
+# No secret is written into this file. Every variable marked `sync: false`
+# is left blank here and typed into the Render dashboard once, so the API
+# Gateway URL and its key stay out of git.
+
+services:
+  - type: web
+    name: mixtral-qlora-console
+    runtime: node
+    plan: free
+    # Keep the app near the SageMaker endpoint it calls. Change this if the
+    # endpoint does not live in us-east-1.
+    region: virginia
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    # GET /api/health inspects configuration only and never contacts AWS,
+    # so Render can poll it without costing a model invocation.
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 24.5.0
+
+      # --- Server-only. Set in the dashboard, never committed. ---
+      # Without MIXTRAL_API_URL the app still builds and serves; the
+      # endpoint simply reports `not_configured` and inference is refused.
+      - key: MIXTRAL_API_URL
+        sync: false
+      - key: MIXTRAL_API_KEY
+        sync: false
+
+      - key: MIXTRAL_API_KEY_HEADER
+        value: x-api-key
+      - key: MIXTRAL_TIMEOUT_MS
+        value: "60000"
+      - key: MIXTRAL_PROMPT_FIELD
+        value: prompt
+      - key: MIXTRAL_PARAMS_FIELD
+        value: parameters
+      # The deployed Lambda fixes generation settings server-side, so the
+      # app sends { prompt } only. Flip to "true" solely against a handler
+      # confirmed to accept a parameters object.
+      - key: MIXTRAL_SUPPORTS_PARAMETERS
+        value: "false"
+
+      # Absolute origin for Open Graph and canonical URLs, e.g.
+      # https://<service>.onrender.com — read at build time, so changing it
+      # needs a redeploy rather than a restart.
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
