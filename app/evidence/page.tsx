@@ -6,8 +6,6 @@ import { EvidenceCard } from "@/components/evidence/evidence-card";
 import { EvidenceVideo } from "@/components/evidence/evidence-video";
 import { EVIDENCE_ITEMS } from "@/data/evidence";
 
-export const dynamic = "force-dynamic";
-
 export default function EvidencePage() {
   // Resolved server-side so a missing file renders an explicit missing state
   // rather than a broken image element.

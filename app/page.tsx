@@ -10,8 +10,6 @@ import { EvidenceCard } from "@/components/evidence/evidence-card";
 import { EVIDENCE_ITEMS } from "@/data/evidence";
 import { MODEL } from "@/data/model";
 
-export const dynamic = "force-dynamic";
-
 export default function ConsolePage() {
   const withAvailability = EVIDENCE_ITEMS.map((item) => ({
     item,

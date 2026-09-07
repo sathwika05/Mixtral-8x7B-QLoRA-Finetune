@@ -21,8 +21,6 @@ import {
 import { EvidenceChain } from "@/components/case-study/evidence-chain";
 import { EVIDENCE_ITEMS } from "@/data/evidence";
 
-export const dynamic = "force-dynamic";
-
 /** Body content per stage, keyed by stage id. Prose lives in data/case-study.ts. */
 function stageContent(id: string, evidence: Array<{ item: (typeof EVIDENCE_ITEMS)[number]; available: boolean }>) {
   switch (id) {

@@ -3,8 +3,6 @@ import { Workbench } from "@/components/console/workbench";
 import { SectionHeading } from "@/components/system/section-heading";
 import { RouteLink } from "@/components/system/route-link";
 
-export const dynamic = "force-dynamic";
-
 export default function InferencePage() {
   return (
     <main className="min-h-screen">
