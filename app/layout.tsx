@@ -14,11 +14,38 @@ const OG_IMAGE = "/mixtral-qlora-fine-tuning.png";
  * image silently falls back to scraping whatever picture it finds on the page.
  * RENDER_EXTERNAL_URL is injected by Render and already carries the scheme, so
  * a deploy there is correct even when NEXT_PUBLIC_SITE_URL was never set.
+ *
+ * Vercel injects VERCEL_PROJECT_PRODUCTION_URL as a bare host with no scheme,
+ * so it is prefixed here. The production host is used rather than VERCEL_URL
+ * because the latter is unique per deployment and would make the canonical URL
+ * point at a preview build.
+ *
+ * Candidates are filtered on emptiness and then on parseability rather than
+ * with `??`: a host that declares the variable with a blank value yields an
+ * empty string, which is neither null nor undefined and so would survive the
+ * chain and throw ERR_INVALID_URL inside `new URL`, failing the build.
  */
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  process.env.RENDER_EXTERNAL_URL ??
-  "http://localhost:3000";
+const LOCAL_URL = "http://localhost:3000";
+
+function resolveSiteUrl(): string {
+  const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+
+  const candidates = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.RENDER_EXTERNAL_URL,
+    vercelHost ? `https://${vercelHost}` : undefined,
+  ];
+
+  for (const candidate of candidates) {
+    const trimmed = candidate?.trim();
+    if (!trimmed) continue;
+    if (URL.canParse(trimmed)) return trimmed;
+  }
+
+  return LOCAL_URL;
+}
+
+const SITE_URL = resolveSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
