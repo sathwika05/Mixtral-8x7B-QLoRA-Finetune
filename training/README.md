@@ -11,8 +11,8 @@ The notebooks and scripts that produced the adapter this application serves.
 
 ## Placeholders
 
-Account-specific identifiers were replaced before these files entered the
-repository. Substitute your own values to run them:
+These files carry placeholders in place of account-specific values. Substitute
+your own to run them:
 
 | Placeholder | Replace with |
 |---|---|
@@ -22,5 +22,4 @@ repository. Substitute your own values to run them:
 | `<DATASET_BUCKET>` | The bucket holding the processed dataset |
 | `<HUGGING_FACE_TOKEN>` | A Hugging Face access token with read access to the base model |
 
-The saved output cells were kept, because they are part of the record of the
-run — they were sanitized with the same substitutions.
+The saved output cells were kept, because they are part of the record of the run.

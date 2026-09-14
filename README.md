@@ -58,8 +58,7 @@ Run on a SageMaker managed training job. The console reported the job
 **Completed in approximately 7 hours**, and the CloudWatch log ends at
 **1528/1528 steps** with the training toolkit reporting `SUCCESS`.
 
-The notebooks and the training entry point are in [`training/`](training/), with
-account-specific identifiers replaced by documented placeholders.
+The notebooks and the training entry point are in [`training/`](training/).
 
 ### On the numbers
 
