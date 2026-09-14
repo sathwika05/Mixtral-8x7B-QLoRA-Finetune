@@ -146,3 +146,11 @@ environment for a Render blueprint deploy.
 | `components/` | Console, flow diagrams, case-study, and evidence components |
 | `training/` | Notebooks and the training entry point that produced the adapter |
 | `tests/` | Unit, component, and architectural boundary tests |
+
+## License
+
+[MIT](LICENSE) — for the code in this repository.
+
+The base model and the training data carry their own terms: Mixtral-8x7B-v0.1 is
+Apache 2.0, and Databricks Dolly 15K is CC BY-SA 3.0. Neither is redistributed
+here.
