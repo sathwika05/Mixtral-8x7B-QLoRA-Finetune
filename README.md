@@ -1,8 +1,8 @@
 # Mixtral-8x7B · QLoRA Fine-Tuning
 
 Fine-tuning a 47-billion-parameter mixture-of-experts model on a single GPU, and
-serving it — the training run, the deployment, and a working inference console
-in one repository.
+serving it — the training run, the deployment, and the inference console that
+calls it, in one repository.
 
 ![Mixtral-8x7B QLoRA fine-tuning](public/mixtral-qlora-fine-tuning.png)
 
@@ -63,15 +63,15 @@ The notebooks and the training entry point are in [`training/`](training/).
 ### On the numbers
 
 Every figure above is either a configuration value or a reading taken from the
-AWS console. There is **no** accuracy score, benchmark result, base-model
-comparison, throughput figure, GPU-utilization metric, or cost saving anywhere in
-this repository, because none was measured. Values that were never recorded stay
-`null` in [`data/model.ts`](data/model.ts) and render as "Not recorded" rather
-than being filled with something plausible.
+AWS console. Round-trip latency is measured directly: timed end to end,
+server-side, for a real request, and labeled as a total. Individual hops are not
+timed, and the request-path animation shows topology and progress only.
 
-Round-trip latency is the one measurement the app makes: it is timed end to end,
-server-side, for a real request, and is labeled as a total. Individual hops are
-not timed, and the request-path animation shows topology and progress only.
+Nothing beyond that is claimed. Accuracy scores, benchmark results, base-model
+comparisons, throughput and GPU-utilization figures, and cost savings are absent
+because none was measured. Values that were never recorded stay `null` in
+[`data/model.ts`](data/model.ts) and render as "Not recorded" rather than being
+filled with something plausible.
 
 ## Serving
 
