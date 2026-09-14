@@ -21,7 +21,7 @@ export default function EvidencePage() {
         <SectionHeading
           eyebrow="Training & deployment evidence"
           title="Console readings from the AWS account"
-          description="Console readings and recordings supplied by the project owner. This application did not measure them and performs no automated redaction of what they contain."
+          description="Console readings and recordings supplied by the project owner."
         />
         <div className="grid gap-4 md:grid-cols-2">
           {items.map(({ item, available }) =>

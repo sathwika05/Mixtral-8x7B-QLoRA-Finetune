@@ -54,8 +54,7 @@ export const CASE_STUDY_STAGES: CaseStudyStage[] = [
     title: "AWS Training & Deployment",
     thesis: "Corpus to training job to artifact to a served endpoint, with two links attested by console evidence.",
     body: [
-      "Two points in the chain can be shown rather than asserted: that the training job completed, and that the endpoint reached service. Both are console readings reported by the project owner \u2014 this application did not measure them, and no utilization, throughput, or cost figure is claimed.",
-      "Evidence is supplied by the project owner and reviewed by hand before it is committed. The application performs no automated redaction, so what a screenshot or recording contains is a publication decision made deliberately, not one the code enforces.",
+      "Two points in the chain can be shown rather than asserted: that the training job completed, and that the endpoint reached service. Both are console readings reported by the project owner.",
     ],
   },
   {

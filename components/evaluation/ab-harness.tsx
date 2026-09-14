@@ -105,8 +105,8 @@ export function AbHarness({
     <div className="flex flex-col gap-4">
       <p className="text-xs leading-relaxed text-muted-foreground">
         {supportsParameters
-          ? "Runs the same instruction under two parameter sets. This is an observation tool: no output is ranked, rated, or compared against the base model."
-          : "Generation parameters are not yet supported by the deployed contract, so both sides send an identical request. This observes run-to-run variability. No output is ranked, rated, or compared against the base model."}
+          ? "Runs the same instruction under two parameter sets."
+          : "Generation parameters are not yet supported by the deployed contract, so both sides send an identical request. This observes run-to-run variability."}
       </p>
 
       <textarea
