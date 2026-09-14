@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CASE_STUDY_STAGES } from "@/data/case-study";
+import { VISIBLE_CASE_STUDY_STAGES } from "@/data/case-study";
 import { cn } from "@/lib/utils";
 
 export function StageIndex() {
-  const [active, setActive] = useState(CASE_STUDY_STAGES[0].id);
+  const [active, setActive] = useState(VISIBLE_CASE_STUDY_STAGES[0].id);
 
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
@@ -20,7 +20,7 @@ export function StageIndex() {
       { rootMargin: "-20% 0px -70% 0px" },
     );
 
-    for (const stage of CASE_STUDY_STAGES) {
+    for (const stage of VISIBLE_CASE_STUDY_STAGES) {
       const element = document.getElementById(stage.id);
       if (element) observer.observe(element);
     }
@@ -30,7 +30,7 @@ export function StageIndex() {
 
   return (
     <nav aria-label="Case study stages" className="flex flex-col gap-1">
-      {CASE_STUDY_STAGES.map((stage, index) => (
+      {VISIBLE_CASE_STUDY_STAGES.map((stage, index) => (
         <a
           key={stage.id}
           href={`#${stage.id}`}

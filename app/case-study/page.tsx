@@ -15,7 +15,7 @@ import { SessionRunLog } from "@/components/evaluation/session-run-log";
 import { TrainingArchitecture } from "@/components/case-study/training-architecture";
 import { SecurityBoundary } from "@/components/case-study/security-boundary";
 import {
-  CASE_STUDY_STAGES,
+  VISIBLE_CASE_STUDY_STAGES,
   TRAINING_DECISIONS,
 } from "@/data/case-study";
 import { EvidenceChain } from "@/components/case-study/evidence-chain";
@@ -113,7 +113,7 @@ export default function CaseStudyPage() {
           </aside>
 
           <div className="flex flex-col gap-10">
-            {CASE_STUDY_STAGES.map((stage, index) => (
+            {VISIBLE_CASE_STUDY_STAGES.map((stage, index) => (
               <StageSection key={stage.id} stage={stage} index={index}>
                 {stageContent(stage.id, evidence)}
               </StageSection>

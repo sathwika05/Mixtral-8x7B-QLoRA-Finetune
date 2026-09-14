@@ -92,6 +92,24 @@ export const CASE_STUDY_STAGES: CaseStudyStage[] = [
   },
 ];
 
+/**
+ * Stages withheld from the rendered page. The stage data above is deliberately
+ * left whole: the narrative order stays asserted in tests, and a stage returns
+ * by deleting its id from this set rather than by retyping its prose.
+ *
+ * Both entries here depend on the inference console, which reports
+ * `not_configured` until an endpoint is set, so neither has anything to show.
+ */
+export const HIDDEN_STAGE_IDS: ReadonlySet<string> = new Set([
+  "inference-request",
+  "evaluation-observability",
+]);
+
+/** What the page and its index render. Stage numbering derives from this. */
+export const VISIBLE_CASE_STUDY_STAGES = CASE_STUDY_STAGES.filter(
+  (stage) => !HIDDEN_STAGE_IDS.has(stage.id),
+);
+
 interface DecisionBase {
   id: string;
   decision: string;
