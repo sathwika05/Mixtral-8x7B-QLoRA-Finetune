@@ -118,12 +118,25 @@ declines to invoke, rather than failing at startup.
 
 ## Deploying
 
-[`render.yaml`](render.yaml) is a Render blueprint: **New → Blueprint**, point it
-at this repo. It declares the build, the health check, and the environment, and
-leaves every secret blank for the dashboard so nothing sensitive is committed.
+The app needs a host that runs a Next.js server. A static export cannot serve it,
+because `/api/inference` is what holds the endpoint credentials — without that
+route the browser would have to carry them.
 
-Set `NEXT_PUBLIC_SITE_URL` to the deployed origin — it is read at build time to
-resolve Open Graph and canonical URLs.
+On Vercel: **Add New → Project**, import this repository, and leave the detected
+framework settings alone. Set the environment before the first build, since
+variables are read when the build runs rather than when the server starts, so a
+later change needs a redeploy rather than a restart.
+
+Every `MIXTRAL_*` variable is server-only and belongs in the host's dashboard,
+never in the repository. `MIXTRAL_TIMEOUT_MS` should sit below the host's own
+function time limit, so a slow request produces the app's timeout message rather
+than the platform's error page.
+
+`NEXT_PUBLIC_SITE_URL` is optional. It overrides the origin used for Open Graph
+and canonical URLs, which otherwise resolves from the host's deployment URL.
+
+[`render.yaml`](render.yaml) declares the same build, health check, and
+environment for a Render blueprint deploy.
 
 ## Layout
 
