@@ -17,7 +17,7 @@ export default function EvaluationPage() {
         <SectionHeading
           eyebrow="Evaluation"
           title="Observation, not benchmarking"
-          description="Everything on this page is derived from requests actually issued in this browser session. No rating, benchmark result, or base-model comparison is presented, because none has been measured."
+          description="Everything on this page is derived from requests actually issued in this browser session."
         />
 
         <Panel title="Side-by-side harness">

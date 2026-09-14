@@ -46,7 +46,7 @@ export const CASE_STUDY_STAGES: CaseStudyStage[] = [
     title: "Training Configuration",
     thesis: "The recorded run configuration, grouped by the problem each setting solves.",
     body: [
-      "Anything never recorded is shown as unrecorded rather than filled with a plausible default, because a fabricated hyperparameter is worse than a missing one. No loss curve, validation figure, or utilization number appears here: none was captured.",
+      "Anything not recorded is shown as unrecorded rather than filled with a plausible default, because a fabricated hyperparameter is worse than a missing one.",
     ],
   },
   {
@@ -81,7 +81,6 @@ export const CASE_STUDY_STAGES: CaseStudyStage[] = [
     thesis: "Only what the application actually observed.",
     body: [
       "Session telemetry covers real requests: total round-trip, HTTP status, whether parameters were transmitted, and output size. Statistics over an empty set return nothing rather than zero, and every aggregate carries its sample size.",
-      "There is no quality score, benchmark result, or base-model comparison here, because none was measured.",
     ],
   },
   {

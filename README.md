@@ -67,11 +67,8 @@ AWS console. Round-trip latency is measured directly: timed end to end,
 server-side, for a real request, and labeled as a total. Individual hops are not
 timed, and the request-path animation shows topology and progress only.
 
-Nothing beyond that is claimed. Accuracy scores, benchmark results, base-model
-comparisons, throughput and GPU-utilization figures, and cost savings are absent
-because none was measured. Values that were never recorded stay `null` in
-[`data/model.ts`](data/model.ts) and render as "Not recorded" rather than being
-filled with something plausible.
+Values that were not recorded stay `null` in [`data/model.ts`](data/model.ts) and
+render as "Not recorded" rather than being filled with something plausible.
 
 ## Serving
 
