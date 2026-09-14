@@ -137,11 +137,3 @@ resolve Open Graph and canonical URLs.
 | `components/` | Console, flow diagrams, case-study, and evidence components |
 | `training/` | Notebooks and the training entry point that produced the adapter |
 | `tests/` | Unit, component, and architectural boundary tests |
-
-## Evidence
-
-Screenshots and a screen recording of the training job and the endpoint live in
-`public/evidence/`. They were sanitized by hand before being committed — account
-ID, ARNs, IAM and role names, and bucket paths removed. The application performs
-no automated redaction and must not be relied on to catch an unsanitized image;
-a missing file renders "Screenshot not provided" rather than a placeholder.
