@@ -51,7 +51,6 @@ export default function ConsolePage() {
         </Panel>
 
 
-        <RouteLink href="/inference" label="Run inference against the deployed endpoint" />
         <RouteLink
           href="/case-study"
           label="Full engineering case study — problem, approach, architecture, decisions"
