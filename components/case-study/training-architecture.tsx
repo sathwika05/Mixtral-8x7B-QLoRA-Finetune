@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import {
-  TRAINING_DISCLAIMER,
   TRAINING_LEGEND,
   TRAINING_NODES,
   type NodeKind,
@@ -221,10 +220,6 @@ export function TrainingArchitecture() {
           ))}
         </g>
       </svg>
-
-      <figcaption className="text-[11px] leading-relaxed text-muted-foreground">
-        {TRAINING_DISCLAIMER}
-      </figcaption>
     </figure>
   );
 }

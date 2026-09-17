@@ -2,7 +2,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { TrainingArchitecture } from "@/components/case-study/training-architecture";
-import { TRAINING_DISCLAIMER, TRAINING_NODES } from "@/data/training-architecture";
+import { TRAINING_NODES } from "@/data/training-architecture";
 
 describe("TrainingArchitecture", () => {
   it("renders every stage of the development flow", () => {
@@ -49,13 +49,6 @@ describe("TrainingArchitecture", () => {
   it("marks BF16 on the compute stages", () => {
     render(<TrainingArchitecture />);
     expect(screen.getAllByText(/BF16 compute/i).length).toBeGreaterThanOrEqual(2);
-  });
-
-  it("disclaims live training in the browser and carries no measurement", () => {
-    render(<TrainingArchitecture />);
-    expect(screen.getByText(TRAINING_DISCLAIMER)).toBeInTheDocument();
-    expect(TRAINING_DISCLAIMER.toLowerCase()).toContain("no training runs in this browser");
-    expect(TRAINING_DISCLAIMER.toLowerCase()).toContain("is a measurement");
   });
 
   it("carries an accessible description of the flow", () => {

@@ -33,6 +33,3 @@ export const TRAINING_LEGEND: Array<{ kind: NodeKind; label: string; note: strin
   { kind: "trainable", label: "Trainable", note: "LoRA A/B adapters · gradients applied here" },
   { kind: "compute", label: "Compute", note: "BF16 where applicable" },
 ];
-
-export const TRAINING_DISCLAIMER =
-  "Illustrates the training loop as it ran on SageMaker. No training runs in this browser, and no figure here is a measurement.";
