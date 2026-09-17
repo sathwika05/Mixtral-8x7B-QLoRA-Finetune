@@ -16,20 +16,22 @@ export const CASE_STUDY_STAGES: CaseStudyStage[] = [
   {
     id: "problem",
     title: "Problem",
-    thesis: "Instruction-following was the goal. Available memory decided how it could be reached.",
+    thesis:
+      "Instruction-following was the goal. Available GPU memory determined how it could be achieved.",
     body: [
-      "Mixtral-8x7B-v0.1 is a base sparse mixture-of-experts checkpoint, not an instruction-tuned one. Reliable instruction-following required supervised fine-tuning on an instruction corpus.",
-      "Full fine-tuning at this parameter scale was not feasible on the available hardware. The binding constraint was memory, and it dictated the whole approach: the model had to be made smaller to train before it could be trained at all.",
+      "Mixtral-8x7B-v0.1 is a base sparse mixture-of-experts checkpoint rather than an instruction-tuned model. Adapting it for instruction-following required supervised fine-tuning on an instruction corpus.",
+      "Full-parameter fine-tuning at this scale was not feasible on the available hardware. Memory was the binding constraint, so the training-time footprint of the base model had to be reduced while keeping the number of trainable parameters small.",
     ],
   },
   {
     id: "approach",
     title: "Fine-Tuning Approach",
-    thesis: "Freeze a quantized base, train small adapters.",
+    thesis: "Freeze a quantized base and train low-rank adapters.",
     body: [
-      "Full fine-tuning updates every parameter and carries optimizer state proportional to the model. Ruled out by the constraint.",
-      "LoRA over a 16-bit base cuts trainable parameters but still holds the full-precision base resident. Still too large.",
-      "QLoRA holds the base in 4-bit NF4 and trains low-rank adapters above it, leaving roughly 3.96% of parameters receiving gradients. That is the trade-off that made the run possible; the costs are a quantized base and an adapter the deployment has to carry alongside it.",
+      "Full fine-tuning updates every model parameter and requires optimizer state and gradients at model scale, exceeding the available memory budget.",
+      "Standard LoRA dramatically reduces the number of trainable parameters, but a 16-bit base model must still remain resident in memory. For Mixtral-8x7B, that was still too large for the available hardware.",
+      "QLoRA solves the remaining memory constraint by storing the frozen base in 4-bit NF4 while training higher-precision LoRA adapters above it. In this run, roughly 3.96% of parameters were trainable.",
+      "The result is a substantially smaller training-memory footprint while retaining the full base architecture. Training produces a LoRA adapter artifact that is loaded alongside the base checkpoint for inference.",
     ],
   },
   {
